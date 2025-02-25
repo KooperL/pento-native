@@ -6,5 +6,15 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
 eframe = "0.26"  # Use the latest version from crates.io
 egui = "0.26"
+egui_extras = { version = "0.26", features = ["image"] } # Optional
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+eframe = { version = "0.26", features = ["default"] }
+egui_extras = { version = "0.26", features = ["image"] } # Optional
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+eframe = { version = "0.26", features = ["glow"] }
+egui_extras = { version = "0.26", features = ["image"] } # Optional
